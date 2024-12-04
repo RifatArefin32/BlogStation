@@ -35,8 +35,10 @@ django-admin startproject BlogStation .
 ```bash
 touch .gitignore
 ```
-- Initialize git repository
+- Initialize git repository and connect to the remote repository
 ```bash
 git init
 git add . && git commit -m "Initial commit"
+git remote add origin https://github.com/RifatArefin32/BlogStation.git
+git branch -M main
 ```
