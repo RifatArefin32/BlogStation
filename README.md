@@ -73,55 +73,92 @@ pip install -r requirements.txt
 ## ERD Models
 
 ### User
-- id (Primary Key)
-- username (Unique)
-- email (Unique)
-- password_hash
-- first_name
-- last_name
-- profile_picture (Optional)
-- created_at
-- updated_at
+
+| Field            | Type         | Constraints            |
+|-------------------|--------------|------------------------|
+| id               | Primary Key  | Auto-increment         |
+| username         | String       | Unique                |
+| email            | String       | Unique                |
+| password_hash    | String       | Not null              |
+| first_name       | String       | Not null              |
+| last_name        | String       | Not null              |
+| profile_picture  | String       | Optional              |
+| created_at       | Timestamp    | Not null              |
+| updated_at       | Timestamp    | Not null              |
+
+---
 
 ### BlogPost
-- id (Primary Key)
-- user_id (Foreign Key: User.id)
-- title
-- content
-- status (e.g., draft, published)
-- created_at
-- updated_at
-- published_at (Optional: when the post was published)
+
+| Field            | Type         | Constraints            |
+|-------------------|--------------|------------------------|
+| id               | Primary Key  | Auto-increment         |
+| user_id          | Foreign Key  | References `User.id`   |
+| title            | String       | Not null              |
+| content          | Text         | Not null              |
+| status           | String       | E.g., draft, published |
+| created_at       | Timestamp    | Not null              |
+| updated_at       | Timestamp    | Not null              |
+| published_at     | Timestamp    | Optional              |
+
+---
 
 ### Comment
-- id (Primary Key)
-- user_id (Foreign Key: User.id)
-- blog_post_id (Foreign Key: BlogPost.id)
-- content
-- created_at
-- updated_at
+
+| Field            | Type         | Constraints            |
+|-------------------|--------------|------------------------|
+| id               | Primary Key  | Auto-increment         |
+| user_id          | Foreign Key  | References `User.id`   |
+| blog_post_id     | Foreign Key  | References `BlogPost.id` |
+| content          | Text         | Not null              |
+| created_at       | Timestamp    | Not null              |
+| updated_at       | Timestamp    | Not null              |
+
+---
 
 ### Category
-- id (Primary Key)
-- name (Unique)
-- description (Optional)
+
+| Field            | Type         | Constraints            |
+|-------------------|--------------|------------------------|
+| id               | Primary Key  | Auto-increment         |
+| name             | String       | Unique, Not null       |
+| description      | Text         | Optional              |
+
+---
 
 ### BlogPostCategory (Join Table)
-- blog_post_id (Foreign Key: BlogPost.id)
-- category_id (Foreign Key: Category.id)
+
+| Field            | Type         | Constraints            |
+|-------------------|--------------|------------------------|
+| blog_post_id     | Foreign Key  | References `BlogPost.id` |
+| category_id      | Foreign Key  | References `Category.id` |
+
+---
 
 ### Tag
-- id (Primary Key)
-- name (Unique)
+
+| Field            | Type         | Constraints            |
+|-------------------|--------------|------------------------|
+| id               | Primary Key  | Auto-increment         |
+| name             | String       | Unique, Not null       |
+
+---
 
 ### BlogPostTag (Join Table)
-- blog_post_id (Foreign Key: BlogPost.id)
-- tag_id (Foreign Key: Tag.id)
+
+| Field            | Type         | Constraints            |
+|-------------------|--------------|------------------------|
+| blog_post_id     | Foreign Key  | References `BlogPost.id` |
+| tag_id           | Foreign Key  | References `Tag.id`    |
+
+---
 
 ### Like
-- id (Primary Key)
-- user_id (Foreign Key: User.id)
-- blog_post_id (Foreign Key: BlogPost.id)
-- created_at
-- updated_at
- 
+
+| Field            | Type         | Constraints            |
+|-------------------|--------------|------------------------|
+| id               | Primary Key  | Auto-increment         |
+| user_id          | Foreign Key  | References `User.id`   |
+| blog_post_id     | Foreign Key  | References `BlogPost.id` |
+| created_at       | Timestamp    | Not null              |
+| updated_at       | Timestamp    | Not null              |
