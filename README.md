@@ -12,33 +12,37 @@ sudo apt install python3-venv
 ```
 
 # Project setup
-- Create project root directory `BlogStation` and change directory to it
+Create project root directory `BlogStation` and change directory to it
 ```bash
 mkdir BlogStation
 cd BlogStation
 ```
-- Set Up a Virtual Environment `env` and activate it
+Set Up a Virtual Environment `env` and activate it
 ```bash
 python3 -m venv env
 source env/bin/activate
 ```
-- Install Django to the virtual environment and Save installed packages to a `requirements.txt` file
+Install Django to the virtual environment and Save installed packages to a `requirements.txt` file
 ```bash
 pip install django
 pip freeze > requirements.txt
 ```
-- Start our Django Project `BlogStation` to the current directory
+Start our Django Project `BlogStation` to the current directory
 ```bash
 django-admin startproject BlogStation .
 ```
-- Setup `.gitignore` file
+Setup `.gitignore` file
 ```bash
 touch .gitignore
 ```
-- Initialize git repository and connect to the remote repository
+Initialize git repository and connect to the remote repository
 ```bash
 git init
 git add . && git commit -m "Initial commit"
 git remote add origin https://github.com/RifatArefin32/BlogStation.git
 git branch -M main
+```
+Run the project
+```bash
+python3 manage.py runserver
 ```
